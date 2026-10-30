@@ -1,0 +1,38 @@
+[
+  {
+    "categoriaInformada": "BURACO_VIA",
+    "descricao": "Buraco grande próximo ao ponto de ônibus, com risco para motos e bicicletas.",
+    "endereco": "Avenida Vitória, Vitória - ES",
+    "latitude": -20.3155,
+    "longitude": -40.3128,
+    "prioridadeEsperada": "CRITICA",
+    "situacao": "RECEBIDA"
+  },
+  {
+    "categoriaInformada": "ILUMINACAO",
+    "descricao": "Poste apagado há vários dias na rua residencial.",
+    "endereco": "Praia do Canto, Vitória - ES",
+    "latitude": -20.3021,
+    "longitude": -40.2934,
+    "prioridadeEsperada": "ALTA",
+    "situacao": "EM_ANALISE"
+  },
+  {
+    "categoriaInformada": "ACESSIBILIDADE",
+    "descricao": "Calçada quebrada impede a passagem de cadeira de rodas.",
+    "endereco": "Centro, Vila Velha - ES",
+    "latitude": -20.3297,
+    "longitude": -40.2925,
+    "prioridadeEsperada": "ALTA",
+    "situacao": "RECEBIDA"
+  },
+  {
+    "categoriaInformada": "LIMPEZA_URBANA",
+    "descricao": "Resíduos acumulados em área pública precisam de coleta.",
+    "endereco": "Jardim Camburi, Vitória - ES",
+    "latitude": -20.2612,
+    "longitude": -40.2678,
+    "prioridadeEsperada": "MEDIA",
+    "situacao": "RESOLVIDA"
+  }
+]
