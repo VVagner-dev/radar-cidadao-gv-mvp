@@ -1,0 +1,3 @@
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+@Component({selector:'app-root',imports:[RouterOutlet,RouterLink,RouterLinkActive],template:`<div class="govbar"></div><header><a routerLink="/" class="brand"><span class="brand-mark">+</span><span>Radar Cidadão</span><b>GV</b></a><nav><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Fazer denúncia</a><a routerLink="/painel" routerLinkActive="active">Painel público</a></nav></header><router-outlet/><footer><strong>Radar Cidadão GV</strong><span>Projeto Integrador IV · FAESA 2026</span></footer>`}) export class AppComponent {}
