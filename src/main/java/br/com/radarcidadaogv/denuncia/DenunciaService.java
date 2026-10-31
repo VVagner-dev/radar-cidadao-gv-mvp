@@ -3,6 +3,7 @@ package br.com.radarcidadaogv.denuncia;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,7 @@ public class DenunciaService {
         fotos.forEach(file -> report.getAnexos().add(store(file, report)));
         return repository.save(report);
     }
-    public Page<Denuncia> listar(int page, int size) { return repository.findAll(PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 50))); }
+    public Page<Denuncia> listar(int page, int size) { return repository.findAll(PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 50), Sort.by(Sort.Direction.DESC, "criadaEm"))); }
     public Resumo resumo() { return new Resumo(repository.count(), repository.countBySituacao(Situacao.RECEBIDA), repository.countBySituacao(Situacao.EM_ANALISE), repository.countBySituacao(Situacao.RESOLVIDA)); }
     @Transactional public Denuncia atualizarSituacao(Long id, Situacao situacao) { Denuncia report = repository.findById(id).orElseThrow(() -> new NoSuchElementException("Denúncia não encontrada.")); report.setSituacao(situacao); return report; }
     private Anexo store(MultipartFile file, Denuncia report) { if (file.isEmpty() || !TYPES.contains(file.getContentType()) || file.getSize() > 5 * 1024 * 1024) throw new IllegalArgumentException("Cada foto deve ser JPG, PNG ou WebP de até 5 MB."); try { Files.createDirectories(uploadDirectory); String ext = Optional.ofNullable(file.getOriginalFilename()).filter(n -> n.contains(".")).map(n -> n.substring(n.lastIndexOf('.'))).orElse(".bin"); String stored = UUID.randomUUID() + ext; Files.copy(file.getInputStream(), uploadDirectory.resolve(stored), StandardCopyOption.REPLACE_EXISTING); Anexo attachment = new Anexo(); attachment.setDenuncia(report); attachment.setNomeOriginal(file.getOriginalFilename()); attachment.setNomeArmazenado(stored); attachment.setTipoConteudo(file.getContentType()); attachment.setTamanhoBytes(file.getSize()); return attachment; } catch (IOException exception) { throw new IllegalStateException("Não foi possível guardar a foto.", exception); } }

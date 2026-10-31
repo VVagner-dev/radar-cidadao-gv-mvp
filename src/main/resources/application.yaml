@@ -17,4 +17,4 @@ app:
   uploads-directory: ./uploads
   groq:
     api-key: ${GROQ_API_KEY:}
-    model: llama-3.3-70b-versatile
+    model: qwen/qwen3.8-27b
